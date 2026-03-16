@@ -1,0 +1,21 @@
+{
+    "llm": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "api_key": "",
+        "base_url": "",
+        "model_path": "./models"
+    },
+    "rag": {
+        "top_k": 3
+    },
+    "tts": {
+        "provider": "qwen3",
+        "model_path": "./tts_models",
+        "voice": "emilia",
+        "model": "",
+        "voice_id": "",
+        "language": "zh",
+        "speaker": ""
+    }
+}
