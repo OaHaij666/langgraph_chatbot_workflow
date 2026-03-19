@@ -43,8 +43,19 @@ class LLMClient(BaseLLMClient):
         else:
             raise ValueError(f"Unknown LLM provider: {provider}")
     
-    def chat(self, prompt: str) -> str:
-        return self._client.chat(prompt)
+    def chat(self, prompt: str, multimodal_inputs: list[dict] | None = None) -> str:
+        try:
+            return self._client.chat(prompt, multimodal_inputs=multimodal_inputs)
+        except TypeError:
+            return self._client.chat(prompt)
     
-    def stream_chat(self, prompt: str) -> Generator[str, None, None]:
-        return self._client.stream_chat(prompt)
+    def stream_chat(self, prompt: str, multimodal_inputs: list[dict] | None = None) -> Generator[str, None, None]:
+        try:
+            return self._client.stream_chat(prompt, multimodal_inputs=multimodal_inputs)
+        except TypeError:
+            return self._client.stream_chat(prompt)
+
+
+def get_llm_client() -> LLMClient:
+    """获取 LLM 客户端实例"""
+    return LLMClient()

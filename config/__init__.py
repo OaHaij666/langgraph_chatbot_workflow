@@ -27,7 +27,8 @@ class Config:
                 "provider": "openai",
                 "model": "gpt-3.5-turbo",
                 "api_key": "",
-                "base_url": ""
+                "base_url": "",
+                "enable_multimodal": False
             },
             "rag": {
                 "top_k": 3

@@ -18,6 +18,12 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.venv/
+models/
+tts_models/
+train/
+train_qwen/
+unsloth_compiled_cache/
 .pytest_cache/
 .coverage
 htmlcov/
