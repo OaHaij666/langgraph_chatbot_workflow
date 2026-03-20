@@ -1,0 +1,110 @@
+{
+    "llm": {
+        "provider": "unsloth",
+        "model": "",
+        "api_key": "",
+        "base_url": "",
+        "base_model_path": "./models/Qwen3___5-4B",
+        "model_path": "./models/Qwen3___5-4B",
+        "adapter_path": "./models/qwen3.5-4b-lora-default",
+        "adapters": [
+            {
+                "id": "default",
+                "name": "general-assistant",
+                "path": "./models/qwen3.5-4b-lora-default",
+                "params": {
+                    "lora_scale": 0.6,
+                    "temperature": 0.7,
+                    "top_p": 0.9
+                }
+            },
+            {
+                "id": "coding_agent",
+                "name": "coding-specialist",
+                "path": "./models/qwen3.5-4b-lora-coding",
+                "params": {
+                    "lora_scale": 0.7,
+                    "temperature": 0.5,
+                    "top_p": 0.95
+                }
+            },
+            {
+                "id": "planner_agent",
+                "name": "planning-specialist",
+                "path": "./models/qwen3.5-4b-lora-planning",
+                "params": {
+                    "lora_scale": 0.65,
+                    "temperature": 0.6,
+                    "top_p": 0.9
+                }
+            }
+        ],
+        "max_seq_length": 8192,
+        "load_in_4bit": true,
+        "max_new_tokens": 500,
+        "temperature": 0.7,
+        "top_p": 0.9,
+        "enable_thinking": false,
+        "enable_multimodal": false,
+        "lora_scale": 0.6,
+        "max_resident_adapters": 4,
+        "switch_history_size": 50
+    },
+    "rag": {
+        "top_k": 3
+    },
+    "tts": {
+        "provider": "qwen3",
+        "model_path": "./tts_models",
+        "voice": "emilia",
+        "model": "",
+        "voice_id": "",
+        "language": "zh",
+        "speaker": ""
+    },
+    "server": {
+        "host": "0.0.0.0",
+        "port": 721
+    },
+    "database": {
+        "type": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "database": "feifeina",
+        "user": "root",
+        "password": "your_password_here",
+        "pool_size": 5,
+        "max_overflow": 10
+    },
+    "history": {
+        "max_entries_per_session": 100,
+        "max_tokens_per_session": 8000,
+        "cleanup_days": 7,
+        "cleanup_interval_hours": 24,
+        "blocked_keywords": [
+            "密码",
+            "password",
+            "token",
+            "secret",
+            "api_key",
+            "apikey",
+            "private_key",
+            "私钥",
+            "银行卡",
+            "身份证"
+        ]
+    },
+    "intent": {
+        "keywords": {
+            "task": ["帮我", "帮我做", "请帮我", "执行", "完成", "处理"],
+            "chat": ["你好", "在吗", "聊聊", "聊天", "闲聊"]
+        },
+        "confidence": {
+            "keyword": 0.95,
+            "bert": 0.8,
+            "llm": 0.6,
+            "fallback": 0.5
+        },
+        "confirm_threshold": 0.7
+    }
+}

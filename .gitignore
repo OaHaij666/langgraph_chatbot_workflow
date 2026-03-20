@@ -42,3 +42,4 @@ venv/
 .DS_Store
 .trae/
 openspec/
+config/config.json

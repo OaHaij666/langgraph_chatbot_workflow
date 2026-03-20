@@ -28,6 +28,20 @@ class Config:
                 "model": "gpt-3.5-turbo",
                 "api_key": "",
                 "base_url": "",
+                "base_model_path": "./models/Qwen3___5-4B",
+                "adapter_path": "./models/qwen3.5-4b-lora-default",
+                "adapters": {
+                    "default": {
+                        "id": "default",
+                        "name": "general-assistant",
+                        "path": "./models/qwen3.5-4b-lora-default",
+                        "params": {
+                            "lora_scale": 0.6
+                        }
+                    }
+                },
+                "max_resident_adapters": 4,
+                "switch_history_size": 30,
                 "enable_multimodal": False
             },
             "rag": {
@@ -35,6 +49,19 @@ class Config:
             },
             "tts": {
                 "provider": "default"
+            },
+            "intent": {
+                "keywords": {
+                    "task": ["帮我", "帮我做", "请帮我", "执行", "完成", "处理"],
+                    "chat": ["你好", "在吗", "聊聊", "聊天", "闲聊"]
+                },
+                "confidence": {
+                    "keyword": 0.95,
+                    "bert": 0.8,
+                    "llm": 0.6,
+                    "fallback": 0.5
+                },
+                "confirm_threshold": 0.7
             }
         }
     

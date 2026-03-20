@@ -1,8 +1,13 @@
+"""
+意图路由模块
+
+根据意图识别结果分派到对应的处理分支。
+"""
 from app.intent.recognize import recognize
+from app.intent.types import IntentCategory
 from app.branches.task import run_task_branch
 from app.branches.chat import run_chat_branch
 from app.branches.default import run_default_branch
-from app.history import add_history
 
 
 def process(text: str):
@@ -16,12 +21,12 @@ def process(text: str):
         流式响应生成器
     """
     # 意图识别
-    intent = recognize(text)
+    intent_result = recognize(text)
 
-    # 根据意图分派到对应分支
-    if intent == "任务":
+    # 根据意图类别分派到对应分支
+    if intent_result.category == IntentCategory.TASK:
         return run_task_branch(text)
-    elif intent == "聊天":
+    elif intent_result.category == IntentCategory.CHAT:
         return run_chat_branch(text)
     else:
         return run_default_branch(text)
